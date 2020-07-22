@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Chat Test</h1>
+<input type = "text" id = "textBox" />
+<p id = "echo"></p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"> </script>
+<script>
+	var socket = io();
+	window.addEventListener("load",function(){
+		var text = document.getElementById("textBox");
+		text.addEventListener("keyup",function(){
+			socket.emit("text",document.getElementById("textBox").value);
+		})
+
+	})
+	
+	socket.on('serverText',function(text){
+		document.getElementById("echo").innerHTML = text;
+	});
+
+
+
+</script>
+</body>
+</body>
+</html>
